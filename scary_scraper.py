@@ -1,6 +1,9 @@
 
 from selenium import webdriver
-
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+import keyboard
+import time
 
 # Main query string
 query_string = "konsument"
@@ -10,10 +13,12 @@ URL = "https://rattsinfosok.domstol.se/lagrummet/SokAvgorande.jsp?tmpMenyVal=enk
 
 
 # Setup "browser"
+
 driver = webdriver.Firefox()
 driver.get(URL)
 original_window = driver.current_window_handle
 elem = driver.find_elements_by_tag_name("a")
+
 
 
 # Fetch a list of articles
@@ -28,6 +33,7 @@ except:
     driver.quit()
 
 
+print(driver.current_window_handle)
 
 try:
     # Takes the list of links and clicks on them
@@ -37,11 +43,20 @@ try:
         windows = driver.window_handles
         print(windows)
         print(windows[1])
-        driver.switch_to.window(windows[0])
-        divs = driver.find_elements_by_tag_name("div")
+        driver.switch_to.window(window_name=windows[1])
+        print(driver.current_window_handle)
+        time.sleep(1)
+        driver.execute_script("window.print=function(){};")
+        time.sleep(1)
+        for i in range(1,6):
+            keyboard.send("tab")
+            print(i)
+        keyboard.press_and_release("enter")
+        print("Finished")
 
 except:
-    driver.quit()
+    #driver.quit()
+    pass
 
 # Quits browser
-driver.quit()
+#driver.quit()
