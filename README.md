@@ -10,7 +10,7 @@ This is what this tool is doing.
 
 ## The process
 The program does not do anything malicous. It just automates what a normal user would have done.
-The program simulates a webpage (in our case: Firefox 🧡) and puts in a search query into
+The program simulates a webpage in a browser (in our case: Firefox 🧡) and puts in a search query into
 a POST-request. This POST-request then delivers search results containing a description of the documents
 and links to their respective detailed documents.
 
